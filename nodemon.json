@@ -1,0 +1,4 @@
+{
+    "verbose": true,
+    "ignore": [".vscode/*", ".storybook/*", "node_modules/*", "public/*", "src/*"]
+}

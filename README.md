@@ -1,15 +1,17 @@
 
 Mtl-reactjs-app-template
 
-A perfect Mtl-reactjs-app-template，build a front-end reat js app and back-end nodejs app.
+English|[中文](README-zh.md)
+
+A base on create-react-app template，build a front-end react js app and a back-end nodejs app.
 
 ![GitHub](https://img.shields.io/github/license/Srooter/Mtl-reactjs-app-template)
 
 ## Features
 
-1.Base on `create-reactjs-app`. 
+1.Base on `create-reactjs-app` integrate common plugins. 
 
-2.Integrate commonly plugins.
+2.Base on `Koa2` Build nodejs api interface service.
     
 ## Environment Support
 
@@ -40,7 +42,7 @@ Modern browser,like Chrome,Firefox,Edge last 1 versions.
 - Default: ``
 - Example：`http://www.xxx.com`                      
 
-## Command 
+## Npm Command 
 
 - `npm run clean`: Clean npm cache.
 
@@ -48,9 +50,9 @@ Modern browser,like Chrome,Firefox,Edge last 1 versions.
 
 - `npm run start-server`: Start nodejs server app development environment.
 
-- `npm run build`: Publish application.
+- `npm run build`: Publish reactjs application.
 
-- `npm run build-debug`: Publish application for development environment.
+- `npm run build-debug`: Publish reactjs application for development environment.
 
 - `npm run postbuild`: Reactjs Pre-renders.
 
@@ -68,9 +70,9 @@ Modern browser,like Chrome,Firefox,Edge last 1 versions.
 
 - `npm run storybook`: Test and playground for reactjs components.
 
-- `npm run build-storybook`: Exporting reactjs components output to html.
+- `npm run build-storybook`: Exporting reactjs components output to html file.
 
-> `npm run uncss` effect check src dir css files unused styles.
+> `npm run uncss` Check src dir css files unused styles.
 
 
 ## Reference

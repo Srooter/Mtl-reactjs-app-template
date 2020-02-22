@@ -1,7 +1,7 @@
 
 Mtl-reactjs-app-template
 
-中文|[English](README.md)
+中文 | [English](README.md)
 
 一个基于create-react-app模板，用于创建一个reactjs前端应用和一个nodejs后端应用。
 
@@ -19,7 +19,7 @@ Mtl-reactjs-app-template
 
 ## Usage
 
-1. `git clone https://github.com/Srooter/Mtl-reactjs-app-template.git` 或下载zip文件。
+1. `git clone https://github.com/Srooter/Mtl-reactjs-app-template.git` 或下载zip。
 
 2. `npm install`
 

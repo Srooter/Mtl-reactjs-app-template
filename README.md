@@ -1,7 +1,7 @@
 
 Mtl-reactjs-app-template
 
-English|[中文](README-zh.md)
+English | [中文](README-zh.md)
 
 A base on create-react-app template，build a front-end react js app and a back-end nodejs app.
 

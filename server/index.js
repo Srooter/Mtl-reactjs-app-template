@@ -29,11 +29,17 @@ server.use(async (ctx, next) => {
 
 server.use(function(ctx, next) {
   return next().catch(err => {
-    if (401 == err.status) {
-      ctx.status = 401
-      ctx.body = 'account or password is incorrect'
-    } else {
-      throw err
+    switch (err.status) {
+      case 400:
+        ctx.status = 400
+        ctx.body = { msg: 'Front end parameter error' }
+        break
+      case 401:
+        ctx.status = 401
+        ctx.body = { msg: 'account or password is incorrect' }
+        break
+      default:
+        throw err
     }
   })
 })

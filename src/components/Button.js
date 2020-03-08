@@ -7,12 +7,12 @@ import Loading from './Loading'
 const Button = props => {
   const classes = classNames(
     'btn',
-    { [`btn-${props.type}`]: true },
+    { [`btn-${props.btnType}`]: true },
     { [`${props.className}`]: props.className },
     'flex flex-justify-center flex-items-center'
   )
   return (
-    <button className={classes} onClick={props.onClick} disabled={props.disable}>
+    <button className={classes} type={props.type} onClick={props.onClick} disabled={props.disable}>
       {
         <>
           {props.disable && <Loading type="small" />}
@@ -23,4 +23,4 @@ const Button = props => {
   )
 }
 
-export default Button
+export default React.memo(Button)

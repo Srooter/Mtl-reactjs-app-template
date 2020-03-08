@@ -17,12 +17,18 @@ const login = async function(ctx, next) {
           mobile: loginParam.mobile,
         },
         'test',
-        { expiresIn: 10 * 60 * 1000 },
+        { expiresIn: 60 * 60 * 1000 },
         { algorithm: 'RS256' }
       )
-      ctx.cookies.set('user', token, { path: '/', maxAge: 10 * 60 * 1000 })
+      ctx.cookies.set('user', token, { path: '/', maxAge: 60 * 60 * 1000, httpOnly: false })
       return (ctx.body = { isLogin: true, isAuth: true })
+    } else {
+      ctx.status = 401
+      return (ctx.body = { msg: 'Account or password is incorrect' })
     }
+  } else {
+    ctx.status = 400
+    return (ctx.body = { msg: 'Front end parameter error or null' })
   }
 }
 
@@ -45,6 +51,7 @@ const loginState = async function(ctx, next) {
     return (ctx.body = { isLogin: true, isAuth: true })
   } else {
     ctx.status = 401
+    return (ctx.body = { msg: 'Account or password is incorrect' })
   }
 }
 

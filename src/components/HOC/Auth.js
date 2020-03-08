@@ -15,7 +15,9 @@ export function requireAuthentication(Component) {
           props.history.push('/')
         } else {
           goLogin(res.data)
-          props.history.push('/main')
+          if (props.match.path !== '/main') {
+            props.history.push('/main')
+          }
         }
       })
     }
@@ -36,12 +38,10 @@ export function requireAuthentication(Component) {
       </>
     )
   }
-
-  return connect(mapStateToProps)(Auth)
-}
-
-const mapStateToProps = state => {
-  return {
-    param: state.loginRds,
+  const mapStateToProps = state => {
+    return {
+      param: state.loginRds,
+    }
   }
+  return connect(mapStateToProps)(Auth)
 }

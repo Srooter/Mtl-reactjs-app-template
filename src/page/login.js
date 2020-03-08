@@ -20,13 +20,14 @@ function Login(props) {
     username: 'Sroot',
     password: 'sr33%1',
     mobile: '19999999999',
-    verifyCode: '',
+    verifyCode: 'e5f6',
   })
   const handleChange = e => {
     e.persist()
     setForm(form => ({ ...form, [e.target.name]: e.target.value }))
   }
-  function login() {
+  function login(e) {
+    e.preventDefault()
     props.form.validateFields((error, value) => {
       if (!error) {
         loginApi({
@@ -97,70 +98,72 @@ function Login(props) {
         <Layout className="App-header">
           <div className="form bg-white">
             <h2 className="form__title">Login</h2>
-            <div className={getFieldError('username') ? 'form-input input-error' : 'form-input'}>
-              <input
-                type="text"
-                className="form-input__text"
-                placeholder="Username"
-                {...getFieldProps('username', {
-                  validateTrigger: 'onClick',
-                  rules: [{ required: true }],
-                })}
-                name="username"
-                value={form.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={getFieldError('password') ? 'form-input input-error' : 'form-input'}>
-              <input
-                type="password"
-                className="form-input__text"
-                placeholder="Password"
-                {...getFieldProps('password', {
-                  validateTrigger: 'onClick',
-                  rules: [{ required: true }],
-                })}
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={getFieldError('mobile') ? 'form-input input-error' : 'form-input'}>
-              <input
-                type="text"
-                className="form-input__text"
-                placeholder="Phone number"
-                {...getFieldProps('mobile', {
-                  validateTrigger: 'onClick',
-                  rules: [{ required: true }],
-                })}
-                name="mobile"
-                value={form.mobile}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={getFieldError('verifyCode') ? 'form-input input-error' : 'form-input'}>
-              <div className="flex flex-items-center">
+            <form onSubmit={login}>
+              <div className={getFieldError('username') ? 'form-input input-error' : 'form-input'}>
                 <input
                   type="text"
-                  className="form-input__text flex-cell"
-                  placeholder="SMS verification code"
-                  {...getFieldProps('verifyCode', {
+                  className="form-input__text"
+                  placeholder="Username"
+                  {...getFieldProps('username', {
                     validateTrigger: 'onClick',
                     rules: [{ required: true }],
                   })}
-                  name="verifyCode"
-                  value={form.verifyCode}
+                  name="username"
+                  value={form.username}
                   onChange={handleChange}
                 />
-                <div className="form-input__code blue-text" onClick={() => sendCode()}>
-                  {count.sendCodeText}
+              </div>
+              <div className={getFieldError('password') ? 'form-input input-error' : 'form-input'}>
+                <input
+                  type="password"
+                  className="form-input__text"
+                  placeholder="Password"
+                  {...getFieldProps('password', {
+                    validateTrigger: 'onClick',
+                    rules: [{ required: true }],
+                  })}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={getFieldError('mobile') ? 'form-input input-error' : 'form-input'}>
+                <input
+                  type="text"
+                  className="form-input__text"
+                  placeholder="Phone number"
+                  {...getFieldProps('mobile', {
+                    validateTrigger: 'onClick',
+                    rules: [{ required: true }],
+                  })}
+                  name="mobile"
+                  value={form.mobile}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={getFieldError('verifyCode') ? 'form-input input-error' : 'form-input'}>
+                <div className="flex flex-items-center">
+                  <input
+                    type="text"
+                    className="form-input__text flex-cell"
+                    placeholder="SMS verification code"
+                    {...getFieldProps('verifyCode', {
+                      validateTrigger: 'onClick',
+                      rules: [{ required: true }],
+                    })}
+                    name="verifyCode"
+                    value={form.verifyCode}
+                    onChange={handleChange}
+                  />
+                  <div className="form-input__code blue-text" onClick={() => sendCode()}>
+                    {count.sendCodeText}
+                  </div>
                 </div>
               </div>
-            </div>
-            <Button className="login-btn" type="primary" onClick={login} disable={count.btnDisable}>
-              Login
-            </Button>
+              <Button className="login-btn" btnType="primary" type="Submit" disable={count.btnDisable}>
+                Login
+              </Button>
+            </form>
           </div>
         </Layout>
       </ErrorBoundary>

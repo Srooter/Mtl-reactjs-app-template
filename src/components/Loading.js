@@ -7,4 +7,4 @@ const Loading = props => {
   return <div className={`loading ${classes[props.type]}`}></div>
 }
 
-export default Loading
+export default React.memo(Loading)

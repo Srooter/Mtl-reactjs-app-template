@@ -1,7 +1,7 @@
 import { GO_LOGIN } from '../../actions'
 import Cookies from 'js-cookie'
 
-let user = Cookies.get('user') && JSON.parse(Cookies.get('user'))
+let user = Cookies.get('user')
 const initialState = user ? user : {}
 
 export const loginRds = (state = initialState, action) => {

@@ -11,4 +11,4 @@ const Layout = props => {
   return <div className={classes}>{props.children}</div>
 }
 
-export default Layout
+export default React.memo(Layout)

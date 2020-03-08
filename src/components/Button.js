@@ -12,10 +12,10 @@ const Button = props => {
     'flex flex-justify-center flex-items-center'
   )
   return (
-    <button className={classes} type={props.type} onClick={props.onClick} disabled={props.disable}>
+    <button className={classes} type={props.type} onClick={props.onClick} disabled={props.disabled}>
       {
         <>
-          {props.disable && <Loading type="small" />}
+          {props.disabled && <Loading type="small" />}
           {props.children}
         </>
       }

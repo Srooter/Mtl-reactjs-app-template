@@ -11,11 +11,11 @@ import './login.css'
 
 function Login(props) {
   const [count, setCount] = useState({
-    sendFlag: true,
-    btnDisable: false,
     sendCount: 60,
     sendCodeText: 'Get code',
   })
+  const [sendFlag, setSendFlag] = useState(false)
+  const [btnDisable, setBtnDisable] = useState(true)
   const [form, setForm] = useState({
     username: 'Sroot',
     password: 'sr33%1',
@@ -36,11 +36,13 @@ function Login(props) {
           mobile: form.mobile,
           verifyCode: form.verifyCode,
         })
+        setBtnDisable(true)
       }
     })
   }
   async function loginApi(data) {
     await ajax.post('/api/user/login', data).then(res => {
+      setBtnDisable(false)
       const dataMsg = res.data.msg
       if (dataMsg) {
         alert(dataMsg)
@@ -53,33 +55,34 @@ function Login(props) {
   function sendCode() {
     props.form.validateFields(['mobile'], (error, value) => {
       if (!error) {
-        if (count.sendFlag) {
+        if (!sendFlag) {
           sendVerifyCodeApi({
             mobile: form.mobile,
           })
         }
-        setCount({ ...count, sendFlag: false })
+        setSendFlag(true)
       }
     })
   }
   useEffect(() => {
     const timerID = setInterval(() => {
-      if (!count.sendFlag) {
-        setCount({ ...count, count: count.sendCount--, sendCodeText: count.sendCount + 's' })
-        if (count.sendCount <= 0) {
+      if (sendFlag) {
+        count.sendCount--
+        setCount({ ...count, sendCodeText: count.sendCount + 's' })
+        if (count.sendCount === 0) {
           setCount({
             ...count,
-            sendFlag: true,
             sendCount: 60,
             sendCodeText: 'Get code',
           })
+          setSendFlag(false)
         }
       }
     }, 1000)
     return function clearTick() {
       clearInterval(timerID)
     }
-  }, [count])
+  }, [sendFlag, count])
   async function sendVerifyCodeApi(data) {
     await ajax.post('/api/user/loginMsgCode', data).then(res => {
       const dataMsg = res.data.msg
@@ -160,7 +163,7 @@ function Login(props) {
                   </div>
                 </div>
               </div>
-              <Button className="login-btn" btnType="primary" type="Submit" disable={count.btnDisable}>
+              <Button className="login-btn" btnType="primary" type="Submit" disabled={btnDisable}>
                 Login
               </Button>
             </form>

@@ -15,14 +15,16 @@ function Login(props) {
     sendCodeText: 'Get code',
   })
   const [sendFlag, setSendFlag] = useState(false)
-  const [btnDisable, setBtnDisable] = useState(true)
+  const [btnDisable, setBtnDisable] = useState(false)
   const [form, setForm] = useState({
     username: 'Sroot',
     password: 'sr33%1',
     mobile: '19999999999',
-    verifyCode: 'e5f6',
+    verifyCode: '',
   })
   const handleChange = e => {
+    // 参考：https://reactjs.org/docs/events.html
+    // Reference：https://reactjs.org/docs/events.html
     e.persist()
     setForm(form => ({ ...form, [e.target.name]: e.target.value }))
   }
@@ -158,7 +160,7 @@ function Login(props) {
                     value={form.verifyCode}
                     onChange={handleChange}
                   />
-                  <div className="form-input__code blue-text" onClick={() => sendCode()}>
+                  <div className="form-input__code blue-text" onClick={sendCode}>
                     {count.sendCodeText}
                   </div>
                 </div>

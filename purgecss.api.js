@@ -1,5 +1,7 @@
 const { PurgeCSS } = require('purgecss')
 
+// 参考：https://purgecss.com/api.html
+// Reference：https://purgecss.com/api.html
 async function runPurgeCSS() {
   const purgeCSSResults = await new PurgeCSS().purge({
     content: ['src/components/*.js', 'src/page/*.js'],

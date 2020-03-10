@@ -21,13 +21,10 @@ export function requireAuthentication(Component) {
         }
       })
     }
-
     useEffect(() => {
       loginStateApi()
     })
-
     const { isLogin, isAuth } = props.param
-
     return (
       <>
         {Cookies.get('user') || isLogin || isAuth ? (

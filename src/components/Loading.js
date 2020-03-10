@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classNames from 'classnames'
 import './Loading.css'
 
@@ -7,4 +7,4 @@ const Loading = props => {
   return <div className={`loading ${classes}`}></div>
 }
 
-export default React.memo(Loading)
+export default memo(Loading)

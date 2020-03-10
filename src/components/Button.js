@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classNames from 'classnames'
 import './Button.css'
 
@@ -23,4 +23,4 @@ const Button = props => {
   )
 }
 
-export default React.memo(Button)
+export default memo(Button)

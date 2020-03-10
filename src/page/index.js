@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.svg'
@@ -19,4 +19,4 @@ function App() {
   )
 }
 
-export default React.memo(App)
+export default memo(App)

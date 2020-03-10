@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classNames from 'classnames'
 import './Layout.css'
 
@@ -11,4 +11,4 @@ const Layout = props => {
   return <div className={classes}>{props.children}</div>
 }
 
-export default React.memo(Layout)
+export default memo(Layout)

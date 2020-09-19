@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import ajax from '../lib/axios'
+import API from '../api/login'
 import { createForm } from 'rc-form'
 import { connect } from 'react-redux'
 import { goLogin } from '../actions'
@@ -32,25 +32,26 @@ function Login(props) {
     e.preventDefault()
     props.form.validateFields((error, value) => {
       if (!error) {
-        loginApi({
+        setBtnDisable(true)
+        API.loginApi({
           username: form.username,
           password: form.password,
           mobile: form.mobile,
           verifyCode: form.verifyCode,
         })
-        setBtnDisable(true)
-      }
-    })
-  }
-  async function loginApi(data) {
-    await ajax.post('/api/user/login', data).then(res => {
-      setBtnDisable(false)
-      const dataMsg = res.data.msg
-      if (dataMsg) {
-        alert(dataMsg)
-      } else {
-        props.goLogin(res.data)
-        props.history.push('/main')
+          .then(res => {
+            setBtnDisable(false)
+            const dataMsg = res.data.msg
+            if (dataMsg) {
+              alert(dataMsg)
+            } else {
+              props.goLogin(res.data)
+              props.history.push('/main')
+            }
+          })
+          .catch(res => {
+            setBtnDisable(false)
+          })
       }
     })
   }
@@ -58,11 +59,22 @@ function Login(props) {
     props.form.validateFields(['mobile'], (error, value) => {
       if (!error) {
         if (!sendFlag) {
-          sendVerifyCodeApi({
+          API.sendVerifyCodeApi({
             mobile: form.mobile,
           })
+            .then(res => {
+              setSendFlag(true)
+              const dataMsg = res.data.msg
+              if (dataMsg) {
+                alert(dataMsg)
+              } else {
+                alert(res.data.msgCode)
+              }
+            })
+            .catch(res => {
+              setSendFlag(true)
+            })
         }
-        setSendFlag(true)
       }
     })
   }
@@ -85,16 +97,6 @@ function Login(props) {
       clearInterval(timerID)
     }
   }, [sendFlag, count])
-  async function sendVerifyCodeApi(data) {
-    await ajax.post('/api/user/loginMsgCode', data).then(res => {
-      const dataMsg = res.data.msg
-      if (dataMsg) {
-        alert(dataMsg)
-      } else {
-        alert(res.data.msgCode)
-      }
-    })
-  }
   const { getFieldProps, getFieldError } = props.form
   return (
     <>

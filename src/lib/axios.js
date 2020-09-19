@@ -9,7 +9,7 @@ const ajax = axios.create({
 
 // axios.get('/xxx', { handlerEnabled: false })
 const isHandlerEnabled = config => {
-  return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ? false : true
+  return config && config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ? false : true
 }
 
 ajax.interceptors.request.use(

@@ -27,6 +27,7 @@
     "koa-router": "^8.0.8",
     "koa-session": "^5.13.1",
     "prettier": "^1.19.1",
+    "qs": "^6.9.3",
     "rc-form": "^2.4.11",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
